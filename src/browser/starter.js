@@ -1008,7 +1008,20 @@ V86Starter.prototype.screen_go_fullscreen = function()
     {
         return;
     }
-
+    // Use keyboard.lock() when available.
+    // MUST be called prior to entering fullscreen.
+    // See https://developer.mozilla.org/en-US/docs/Web/API/Keyboard/lock
+    try {
+        // Slightly abnormal feature detection, but should work. If navigator.keyboard is not of type Keyboard, it is most likely not a string.
+        if(isSecureContext && navigator?.keyboard instanceof (()=>{return (typeof Keyboard=="function") ? Keyboard : String})()) {
+            navigator?.keyboard?.lock();
+        }
+    } catch (error) {
+        // keyboard lock isn't supported, log that it was mistakenly called.
+        console.log(`Keyboard lock is not supported, detection yielded false-positive. Error:\n${error?.stack}`);
+    }
+    
+    
     // bracket notation because otherwise they get renamed by closure compiler
     var fn = elem["requestFullScreen"] ||
             elem["webkitRequestFullscreen"] ||

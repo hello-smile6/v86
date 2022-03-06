@@ -1714,6 +1714,8 @@
         {
             $("mute").remove();
         }
+        // use keyboard.lock() when available to avoid data loss. See https://developer.mozilla.org/en-US/docs/Web/API/Keyboard/lock
+        navigator.keyboard.lock(["KeyW"]);
 
         window.addEventListener("keydown", ctrl_w_rescue, false);
         window.addEventListener("keyup", ctrl_w_rescue, false);
