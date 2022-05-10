@@ -298,7 +298,7 @@ V86Starter.prototype.continue_init = async function(emulator, options)
 
     if(options["serial_container_xtermjs"])
     {
-        this.serial_adapter = new SerialAdapterXtermJS(options["serial_container_xtermjs"], this.bus);
+        this.serial_adapter = new SerialAdapterHterm(options["serial_container_xtermjs"], this.bus);
     }
 
     if(!options["disable_speaker"])

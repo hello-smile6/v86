@@ -15,6 +15,8 @@
 
     // jor1k stuff
     LIB_FILES += " jor1k.js 9p.js filesystem.js marshall.js utf8.js";
+    // hterm stuff
+    LIB_FILES += " hterm_all.js";
 
     var BUILD_FILES = "capstone-x86.min.js libwabt.js";
 
